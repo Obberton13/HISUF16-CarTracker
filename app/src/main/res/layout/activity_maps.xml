@@ -10,8 +10,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|top"
-        android:text="Drop Pin"
-        android:onClick="dropPin"
+        android:text="Drop Car Pin"
+        android:onClick="dropCarPin"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="10dp"/>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:text="Calc Route"
+        android:onClick="calcRoute"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         android:paddingRight="10dp"/>
