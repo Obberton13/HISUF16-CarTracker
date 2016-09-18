@@ -72,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMinZoomPreference(14.0f);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ames));
         String[] permreq = new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION};
-        //requestPermissions(permreq, 2);
+        requestPermissions(permreq, 2);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) return;
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
@@ -99,10 +99,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     };
 
     public void dropCarPin(View view) {
-        LatLng curpos = Person.getPosition();
-        Car = new MarkerOptions().position(curpos).title("Your car is here.");
-        mMap.addMarker(Car);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(curpos));
+        if(Car == null){
+            LatLng curpos = Person.getPosition();
+            Car = new MarkerOptions().position(curpos).title("Your car is here.");
+            mMap.addMarker(Car);
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(curpos));
+        }
 
     }
 
@@ -124,7 +126,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void clearPins(View view){
         Car = null;
-        Person = null;
         mMap.clear();
     }
 
@@ -140,7 +141,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String sensor = "sensor=false";
 
         // Building the parameters to the web service
-        String parameters = str_origin+"&"+str_dest+"&"+sensor+"&mode=WALKING";
+        String parameters = str_origin+"&"+str_dest+"&"+sensor+"&mode=walking";
 
         // Output format
         String output = "json";
